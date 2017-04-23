@@ -15,7 +15,7 @@ bool recording = false;
 static void _cb(int gpio, int level, uint32_t tick) {
     if (level == 1) {
         recording = !recording;
-        std::cout << "Recording turned " << recording ? "on" : "off" << std::endl;
+        std::cout << "Recording turned " << (recording ? "on" : "off") << std::endl;
     }
 }
 
