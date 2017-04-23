@@ -1,4 +1,5 @@
 #include "helper.h"
+#include "ports.h"
 #include <pigpio.h>
 
 void set_all(int value) {
