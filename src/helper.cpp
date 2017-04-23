@@ -1,6 +1,7 @@
 #include "helper.h"
 #include "ports.h"
 #include <pigpio.h>
+#include <unistd.h>
 
 void set_all(int value) {
     gpioWrite(RECORD_LED, value);
