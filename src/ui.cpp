@@ -2,6 +2,7 @@
 #include <pigpio.h>
 #include <unistd.h>
 #include <iostream>
+#include "helper.h"
 
 const int RECORD_BUTTON = 26;
 const int RECORD_LED = 16;
@@ -30,18 +31,6 @@ void blink_record_led() {
         gpioWrite(RECORD_LED, 0);
         usleep(1000000);
     }
-}
-
-void set_all(int value) {
-    gpioWrite(RECORD_LED, value);
-    gpioWrite(GREEN_1_L, value);
-    gpioWrite(GREEN_1_R, value);
-    gpioWrite(GREEN_2_L, value);
-    gpioWrite(GREEN_2_R, value);
-    gpioWrite(YELLOW_L, value);
-    gpioWrite(YELLOW_R, value);
-    gpioWrite(RED_L, value);
-    gpioWrite(RED_R, value);
 }
 
 void boot() {
