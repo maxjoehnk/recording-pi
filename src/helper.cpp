@@ -15,7 +15,7 @@ void set_all(int value) {
 }
 
 void visualize_rms(int channel, double rms) {
-    if (channel === 0) {
+    if (channel == 0) {
         gpioWrite(GREEN_1_L, rms > 0);
         gpioWrite(GREEN_2_L, rms > 0.05);
         gpioWrite(YELLOW_L, rms > 0.07);
