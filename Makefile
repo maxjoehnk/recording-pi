@@ -3,7 +3,7 @@ CC = g++
 DEBUG = -g
 CFLAGS = -Wall -pthread -c $(DEBUG) $(LIBS)
 LFLAGS = -Wall -pthread $(DEBUG) $(LIBS)
-LIBS = -lpigpio -lrt
+LIBS = -lpigpio -lrt `pkg-config --cflags --libs gstreamer-1.0`
 
 ui : $(OBJS)
 	$(CC) $(LFLAGS) $(OBJS) -o ui
