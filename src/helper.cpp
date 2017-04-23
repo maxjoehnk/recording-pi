@@ -2,6 +2,7 @@
 #include "ports.h"
 #include <pigpio.h>
 #include <unistd.h>
+#include <csignal>
 
 void set_all(int value) {
     gpioWrite(RECORD_LED, value);
@@ -47,7 +48,13 @@ void boot() {
     set_all(0);
 }
 
+void signalHandler() {
+    shutdown();
+    exit(0);
+}
+
 int setup() {
+    signal(SIGINT, signalHandler);
     if (gpioInitialise() < 0) {
         return 1;
     }
@@ -68,5 +75,6 @@ int setup() {
 }
 
 void shutdown() {
+    set_all(0);
     gpioTerminate();
 }
