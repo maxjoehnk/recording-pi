@@ -39,16 +39,12 @@ message_handler (GstBus * bus, GstMessage * message, gpointer data)
 
     if (strcmp (name, "level") == 0) {
       gint channels;
-      GstClockTime endtime;
       gdouble rms_dB;
       gdouble rms;
       const GValue *array_val;
       const GValue *value;
       GValueArray *rms_arr;
       gint i;
-
-      if (!gst_structure_get_clock_time (s, "endtime", &endtime))
-        g_warning ("Could not parse endtime");
 
       /* the values are packed into GValueArrays with the value per channel */
       array_val = gst_structure_get_value (s, "rms");
@@ -57,7 +53,6 @@ message_handler (GstBus * bus, GstMessage * message, gpointer data)
       /* we can get the number of channels as the length of any of the value
        * arrays */
       channels = rms_arr->n_values;
-          GST_TIME_ARGS (endtime), channels);
       for (i = 0; i < channels; ++i) {
 
         value = g_value_array_get_nth (rms_arr, i);
