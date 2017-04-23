@@ -9,7 +9,7 @@ const int GREEN_2 = 6;
 const int YELLOW = 5;
 const int RED = 0;
 
-static void _cb(int gpio, int level, uint32_t tick, void *user) {
+static void _cb(int gpio, int level, uint32_t tick) {
     printf("Button pressed");
 }
 
