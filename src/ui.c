@@ -18,7 +18,7 @@ int main(int argc, char** argv) {
     }
     gpioSetMode(RECORD_BUTTON, PI_INPUT);
     gpioSetPullUpDown(RECORD_BUTTON, PI_PUD_UP);
-    gpioSetAlertFunc(RECORD_BUTTON, _cb);
+    //gpioSetAlertFunc(RECORD_BUTTON, _cb);
     gpioSetMode(RECORD_LED, PI_OUTPUT);
     gpioSetMode(GREEN_1, PI_OUTPUT);
     gpioSetMode(GREEN_2, PI_OUTPUT);
