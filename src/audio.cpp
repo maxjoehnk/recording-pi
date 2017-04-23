@@ -149,7 +149,7 @@ main (int argc, char *argv[])
   g_assert (audioconvert);
   level = gst_element_factory_make ("level", NULL);
   g_assert (level);
-  fakesink = gst_element_factory_make ("autoaudiosink", NULL);
+  fakesink = gst_element_factory_make ("fakesink", NULL);
   g_assert (fakesink);
 
   gst_bin_add_many (GST_BIN (pipeline), audiotestsrc, audiodecode, audioconvert, level,
