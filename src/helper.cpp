@@ -3,6 +3,7 @@
 #include <pigpio.h>
 #include <unistd.h>
 #include <csignal>
+#include <stdlib.h>
 
 void set_all(int value) {
     gpioWrite(RECORD_LED, value);
