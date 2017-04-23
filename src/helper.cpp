@@ -48,7 +48,7 @@ void boot() {
     set_all(0);
 }
 
-void signalHandler() {
+void signalHandler(int signum) {
     shutdown();
     exit(0);
 }
