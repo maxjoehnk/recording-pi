@@ -9,13 +9,17 @@ const int GREEN_2 = 6;
 const int YELLOW = 5;
 const int RED = 0;
 
+bool recording = false;
+
 static void _cb(int gpio, int level, uint32_t tick) {
-    printf("Button pressed");
+    if (level == 1) {
+        recording = !recording;
+    }
 }
 
 void blink_record_led() {
     while (true) {
-        gpioWrite(RECORD_LED, 1);
+        gpioWrite(RECORD_LED, recording ? 1 : 0);
         usleep(1000000);
         gpioWrite(RECORD_LED, 0);
         usleep(1000000);
@@ -28,7 +32,7 @@ int main(int argc, char** argv) {
     }
     gpioSetMode(RECORD_BUTTON, PI_INPUT);
     gpioSetPullUpDown(RECORD_BUTTON, PI_PUD_UP);
-    //gpioSetAlertFunc(RECORD_BUTTON, _cb);
+    gpioSetAlertFunc(RECORD_BUTTON, _cb);
     gpioSetMode(RECORD_LED, PI_OUTPUT);
     gpioSetMode(GREEN_1, PI_OUTPUT);
     gpioSetMode(GREEN_2, PI_OUTPUT);
