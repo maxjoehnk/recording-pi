@@ -44,15 +44,10 @@ void boot() {
     gpioWrite(GREEN_2, 1);
     usleep(100000);
     gpioWrite(YELLOW, 1);
-    gpioWrite(GREEN_1, 0);
     usleep(100000);
     gpioWrite(RED, 1);
-    gpioWrite(GREEN_2, 0);
-    usleep(100000);
-    gpioWrite(YELLOW, 0);
-    usleep(100000);
-    gpioWrite(RED, 0);
-    gpioWrite(RECORD_LED, 0);
+    usleep(500000);
+    set_all(0);
 }
 
 int main(int argc, char** argv) {
