@@ -13,7 +13,7 @@ static void _cb(int gpio, int level, uint32_t tick, void *user) {
 }
 
 int main(int argc, char** argv) {
-    if (gpioInitialise() < 0) {
+    if (gpioInitialise() < 0) {
         return 1;
     }
     gpioSetMode(RECORD_BUTTON, PI_INPUT);
