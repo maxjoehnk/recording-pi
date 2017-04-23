@@ -28,6 +28,33 @@ void blink_record_led() {
     }
 }
 
+void set_all(int value) {
+    gpioWrite(RECORD_LED, value);
+    gpioWrite(GREEN_1, value);
+    gpioWrite(GREEN_2, value);
+    gpioWrite(YELLOW, value);
+    gpioWrite(RED, value);
+}
+
+void boot() {
+    set_all(0);
+    gpioWrite(RECORD_LED, 1);
+    gpioWrite(GREEN_1, 1);
+    usleep(100000);
+    gpioWrite(GREEN_2, 1);
+    usleep(100000);
+    gpioWrite(YELLOW, 1);
+    gpioWrite(GREEN_1, 0);
+    usleep(100000);
+    gpioWrite(RED, 1);
+    gpioWrite(GREEN_2, 0);
+    usleep(100000);
+    gpioWrite(YELLOW, 0);
+    usleep(100000);
+    gpioWrite(RED, 0);
+    gpioWrite(RECORD_LED, 0);
+}
+
 int main(int argc, char** argv) {
     if (gpioInitialise() < 0) {
         return 1;
@@ -40,11 +67,7 @@ int main(int argc, char** argv) {
     gpioSetMode(GREEN_2, PI_OUTPUT);
     gpioSetMode(YELLOW, PI_OUTPUT);
     gpioSetMode(RED, PI_OUTPUT);
-    gpioWrite(RECORD_LED, 1);
-    gpioWrite(GREEN_1, 1);
-    gpioWrite(GREEN_2, 1);
-    gpioWrite(YELLOW, 1);
-    gpioWrite(RED, 1);
+    boot();
 
     blink_record_led();
 
