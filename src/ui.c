@@ -2,7 +2,7 @@
 #include <pigpio.h>
 
 const int RECORD_BUTTON = 26;
-const int RECORD_LED = 19;
+const int RECORD_LED = 16;
 const int GREEN_1 = 13;
 const int GREEN_2 = 6;
 const int YELLOW = 5;
