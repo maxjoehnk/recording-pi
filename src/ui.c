@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <pigpio.h>
+#include <unistd.h>
 
 const int RECORD_BUTTON = 26;
 const int RECORD_LED = 16;
@@ -10,6 +11,15 @@ const int RED = 0;
 
 static void _cb(int gpio, int level, uint32_t tick, void *user) {
     printf("Button pressed");
+}
+
+void blink_record_led() {
+    while (true) {
+        gpioWrite(RECORD_LED, 1);
+        usleep(1000000);
+        gpioWrite(RECORD_LED, 0);
+        usleep(1000000);
+    }
 }
 
 int main(int argc, char** argv) {
@@ -30,7 +40,7 @@ int main(int argc, char** argv) {
     gpioWrite(YELLOW, 1);
     gpioWrite(RED, 1);
 
-    sleep(300);
+    blink_record_led();
 
     gpioTerminate();
     return 0;
