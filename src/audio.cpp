@@ -25,6 +25,8 @@
 
 #include <gst/gst.h>
 
+#include "helper.h"
+
 GstElement *audioconvert;
 
 static gboolean
@@ -80,6 +82,8 @@ message_handler (GstBus * bus, GstMessage * message, gpointer data)
         /* converting from dB to normal gives us a value between 0.0 and 1.0 */
         rms = pow (10, rms_dB / 20);
         g_print ("    normalized rms value: %f\n", rms);
+
+        visualize_rms(i, rms);
       }
     }
   }
@@ -123,6 +127,7 @@ cb_newpad (GstElement *decodebin,
 int
 main (int argc, char *argv[])
 {
+    setup();
   GstElement *audiotestsrc, *audiodecode, *level, *fakesink;
   GstElement *pipeline;
   GstCaps *caps;
@@ -175,5 +180,6 @@ main (int argc, char *argv[])
 
   g_source_remove (watch_id);
   g_main_loop_unref (loop);
+  shutdown();
   return 0;
 }
