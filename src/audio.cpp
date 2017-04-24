@@ -119,7 +119,7 @@ main (int argc, char *argv[])
 
   pipeline = gst_pipeline_new (NULL);
   g_assert (pipeline);
-  audiotestsrc = gst_element_factory_make ("filesrc", NULL);
+  audiotestsrc = gst_element_factory_make ("alsasrc", NULL);
   g_assert (audiotestsrc);
   audiodecode = gst_element_factory_make ("decodebin", NULL);
   g_assert(audiodecode);
@@ -130,17 +130,17 @@ main (int argc, char *argv[])
   fakesink = gst_element_factory_make ("fakesink", NULL);
   g_assert (fakesink);
 
-  gst_bin_add_many (GST_BIN (pipeline), audiotestsrc, audiodecode, audioconvert, level,
+  gst_bin_add_many (GST_BIN (pipeline), audiotestsrc, audioconvert, level,
       fakesink, NULL);
-  if (!gst_element_link (audiotestsrc, audiodecode))
-    g_error ("Failed to link audiotestsrc and audiodecode");
+  if (!gst_element_link (audiotestsrc, audioconvert))
+    g_error ("Failed to link audiotestsrc and audioconvert");
   if (!gst_element_link_filtered (audioconvert, level, caps))
     g_error ("Failed to link audioconvert and level");
   if (!gst_element_link (level, fakesink))
     g_error ("Failed to link level and fakesink");
 
-  g_object_set (G_OBJECT (audiotestsrc), "location", argv[1], NULL);
-  g_signal_connect (audiodecode, "pad-added", G_CALLBACK (cb_newpad), NULL);
+  //g_object_set (G_OBJECT (audiotestsrc), "location", argv[1], NULL);
+  //g_signal_connect (audiodecode, "pad-added", G_CALLBACK (cb_newpad), NULL);
 
   /* make sure we'll get messages */
   g_object_set (G_OBJECT (level), "post-messages", TRUE, NULL);
