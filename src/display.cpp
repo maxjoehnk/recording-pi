@@ -1,4 +1,5 @@
 #include <pigpio.h>
+#include <stdlib.h>
 #include "display/ssd1306.h"
 
 const int SERIAL_SPEED = 8000000;
