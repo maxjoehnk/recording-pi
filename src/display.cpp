@@ -91,7 +91,9 @@ int display_reset() {
 }
 
 void display_clear_buffer() {
-    displayBuffer = {};
+    for (int i = 0; i < PAGES * WIDTH; i++) {
+        buffer[i] = 0;
+    }
 }
 
 int main(int argc, char** argv) {
