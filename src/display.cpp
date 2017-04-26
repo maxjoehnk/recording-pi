@@ -73,7 +73,7 @@ void display_render() {
     display_write_command(0); // Page Start Address
     display_write_command(3); // Page End Address
     gpioWrite(DC_PIN, 1); // data mode
-    spiWrite(handle, buffer, buffer_size);
+    spiWrite(handle, (char*) buffer, buffer_size);
 }
 
 void display_contrast(int contrast) {
