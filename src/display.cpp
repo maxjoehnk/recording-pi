@@ -33,6 +33,11 @@ void display_close() {
     spiClose(handle);
 }
 
+int display_write_command(int cmd) {
+    gpioWrite(DC_PIN, 0);
+    return spiWrite(handle, [cmd], 1); // Write one byte
+}
+
 void display_setup() {
     display_write_command(SSD1306_DISPLAYOFF);
     display_write_command(SSD1306_SETDISPLAYCLOCKDIV);
@@ -58,11 +63,6 @@ void display_setup() {
     display_write_command(0x40);
     display_write_command(SSD1306_DISPLAYALLON_RESUME);
     display_write_command(SSD1306_NORMALDISPLAY);
-}
-
-int display_write_command(int cmd) {
-    gpioWrite(DC_PIN, 0);
-    return spiWrite(handle, [cmd], 1); // Write one byte
 }
 
 void display_render() {
