@@ -103,7 +103,7 @@ int main(int argc, char** argv) {
     if (display_init() != 0) {
         return 1;
     }
-    display_clear_bufffer();
+    display_clear_buffer();
     display_render();
 
     display_close();
