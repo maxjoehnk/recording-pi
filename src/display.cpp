@@ -15,24 +15,6 @@ int handle;
 
 int* buffer;
 
-int display_init() {
-    buffer = (int*) malloc(buffer_size);
-    if (buffer == NULL) {
-        return 1;
-    }
-    if ((handle = spiOpen(0, SERIAL_SPEED, 0)) < 0) {
-        return 1;
-    }
-    gpioSetMode(RST_PIN, PI_OUTPUT);
-    gpioSetMode(DC_PIN, PI_OUTPUT);
-    display_setup();
-}
-
-void display_close() {
-    free(buffer);
-    spiClose(handle);
-}
-
 int display_write_command(int cmd) {
     gpioWrite(DC_PIN, 0);
     return spiWrite(handle, [cmd], 1); // Write one byte
@@ -63,6 +45,24 @@ void display_setup() {
     display_write_command(0x40);
     display_write_command(SSD1306_DISPLAYALLON_RESUME);
     display_write_command(SSD1306_NORMALDISPLAY);
+}
+
+int display_init() {
+    buffer = (int*) malloc(buffer_size);
+    if (buffer == NULL) {
+        return 1;
+    }
+    if ((handle = spiOpen(0, SERIAL_SPEED, 0)) < 0) {
+        return 1;
+    }
+    gpioSetMode(RST_PIN, PI_OUTPUT);
+    gpioSetMode(DC_PIN, PI_OUTPUT);
+    display_setup();
+}
+
+void display_close() {
+    free(buffer);
+    spiClose(handle);
 }
 
 void display_render() {
