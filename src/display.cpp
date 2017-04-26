@@ -8,13 +8,14 @@ const int DC_PIN = 25;
 const int WIDTH = 128;
 const int HEIGHT = 32;
 const int PAGES = HEIGHT / 8;
+const int buffer_size = WIDTH * PAGES;
 
 int handle;
 
 int* buffer;
 
 int display_init() {
-    buffer = (int*) malloc(WIDTH * PAGES);
+    buffer = (int*) malloc(buffer_size);
     if (buffer == NULL) {
         return 1;
     }
@@ -71,7 +72,7 @@ void display_render() {
     display_write_command(0); // Page Start Address
     display_write_command(3); // Page End Address
     gpioWrite(DC_PIN, 1); // data mode
-    spiWrite(handle, buffer, WIDTH * PAGES);
+    spiWrite(handle, buffer, buffer_size);
 }
 
 void display_contrast(int contrast) {
@@ -91,7 +92,7 @@ int display_reset() {
 }
 
 void display_clear_buffer() {
-    for (int i = 0; i < PAGES * WIDTH; i++) {
+    for (int i = 0; i < buffer_size; i++) {
         buffer[i] = 0;
     }
 }
