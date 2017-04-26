@@ -24,7 +24,7 @@ const int SSD1306_PAGEADDR = 0x22;
 const int SSD1306_COMSCANINC = 0xC0;
 const int SSD1306_COMSCANDEC = 0xC8;
 const int SSD1306_SEGREMAP = 0xA0;
-const int SSD1306_intGEPUMP = 0x8D;
+const int SSD1306_CHARGEPUMP = 0x8D;
 const int SSD1306_EXTERNALVCC = 0x1;
 const int SSD1306_SWITCHCAPVCC = 0x2;
 
