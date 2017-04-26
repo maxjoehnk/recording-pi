@@ -17,7 +17,7 @@ int* buffer;
 
 int display_write_command(int cmd) {
     gpioWrite(DC_PIN, 0);
-    return spiWrite(handle, [cmd], 1); // Write one byte
+    return spiWrite(handle, (char*) &cmd, 1); // Write one byte
 }
 
 void display_setup() {
