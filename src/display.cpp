@@ -77,7 +77,7 @@ void display_render() {
 }
 
 void display_contrast(int contrast) {
-    if (contrast < 0 || constrast > 255) {
+    if (contrast < 0 || contrast > 255) {
         return;
     }
     display_write_command(SSD1306_SETCONTRAST);
