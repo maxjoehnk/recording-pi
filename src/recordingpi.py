@@ -51,5 +51,4 @@ draw.rectangle((10, 10, width - 10, height - 10), outline=0, fill=1);
 disp.image(image);
 disp.display();
 
-except KeyboardInterrupt:
-    GPIO.cleanup();
+GPIO.cleanup();
