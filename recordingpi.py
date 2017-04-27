@@ -52,12 +52,11 @@ menu = Menu("Main Menu")
 
 def createSession():
     session = Session();
-    m = Menu("Session");
-    m.add(MenuItem("Record", session.record))
-    m.add(MenuItem("Play", session.play))
-    m.add(MenuItem("Delete", session.delete))
-    m.add(MenuItem("Close", session.close))
-    return m;
+    menu = Menu("Session");
+    menu.add(MenuItem("Record", session.record))
+    menu.add(MenuItem("Play", session.play))
+    menu.add(MenuItem("Delete", session.delete))
+    menu.add(MenuItem("Close", session.close))
 
 def loadSession():
     print "loading Sessions";
