@@ -29,7 +29,6 @@ class Menu:
     def select(self):
         value = self.items[self.index].callback();
         if isinstance(value, Menu):
-            self.clear();
             self = value
         return value;
 
