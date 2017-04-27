@@ -27,10 +27,7 @@ class Menu:
             draw.text((0, 16), "No Items", font=font, fill=255);
 
     def select(self):
-        value = self.items[self.index].callback();
-        if isinstance(value, Menu):
-            self = value
-        return value;
+        return self.items[self.index].callback();
 
     def next(self):
         self.index += 1;
