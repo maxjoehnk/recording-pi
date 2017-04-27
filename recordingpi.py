@@ -44,13 +44,6 @@ font = ImageFont.load_default()
 # display.image(icon);
 # display.display();
 
-index = 0
-clkLastState = GPIO.input(ENCODER_CLK_PIN)
-encoderBtnLastState = GPIO.input(ENCODER_BUTTON_PIN);
-
-menu = Menu("Main Menu", []);
-openMainMenu();
-
 def createSession():
     session = Session();
     menu.clear();
@@ -72,6 +65,13 @@ def openMainMenu():
     menu.add(MenuItem("Create Session", createSession));
     menu.add(MenuItem("Load Session", loadSession));
     menu.add(MenuItem("Exit", exit));
+
+index = 0
+clkLastState = GPIO.input(ENCODER_CLK_PIN)
+encoderBtnLastState = GPIO.input(ENCODER_BUTTON_PIN);
+
+menu = Menu("Main Menu", []);
+openMainMenu();
 
 try:
     while True:
