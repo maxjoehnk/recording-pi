@@ -25,7 +25,7 @@ GPIO.setup(ENCODER_CLK_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP);
 GPIO.setup(ENCODER_DT_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP);
 
 # Setup MCP23008 #1
-mcp1 = MCP230xx.MCP23008(busnum=1, address=0x20)
+mcp1 = MCP230xx.MCP23008(busnum=1, address=MCP_1_ADDRESS)
 mcp1.setup(0, GPIO.OUT)
 mcp1.setup(1, GPIO.OUT)
 mcp1.setup(2, GPIO.OUT)
