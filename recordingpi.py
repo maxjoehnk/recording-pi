@@ -100,14 +100,18 @@ encoderBtnLastState = GPIO.input(ENCODER_BUTTON_PIN);
 menu = Menu("Main Menu", []);
 openMainMenu();
 
-timePassed = 0
-active = 1
+class RecordLed:
+    def __init__(self):
+        self.timePassed = 0
+        self.active = 1
 
-def blink_record_led(timePassed, active, delta):
-    timePassed += delta
-    if timePassed > 50:
-        active = active == 1 if 0 else 1
-    GPIO.output(RECORD_LED_PIN, active)
+    def run(self, delta):
+        self.timePassed += delta
+        if self.timePassed > 1
+            self.active = self.active == 1 if 0 else 1
+        GPIO.output(RECORD_LED_PIN, self.active)
+
+led = RecordLed()
 
 lastTime = time()
 
@@ -140,7 +144,7 @@ try:
 
             display.image(image.rotate(180))
             display.display()
-            blink_record_led(timePassed, active, delta)
+            led.run(delta)
             lastTime = time()
             sleep(0.001)
 finally:
