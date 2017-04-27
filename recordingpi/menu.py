@@ -26,6 +26,7 @@ class Menu:
     def select(self):
         value = self.items[self.index].callback();
         if isinstance(value, Menu):
+            self.clear();
             self = value
         return value;
 
@@ -41,6 +42,10 @@ class Menu:
 
     def add(self, item):
         self.items.append(item);
+
+    def clear(self):
+        self.items = [];
+        self.index = 0;
 
 class SessionMenu(Menu):
     def __init__(self, session):
