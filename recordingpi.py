@@ -92,7 +92,6 @@ def shutdown():
     for i in [0, 1, 2, 3, 4, 5, 6, 7]:
         mcp1.output(i, 0)
     GPIO.cleanup();
-    mcp1.cleanup();
 
 index = 0
 clkLastState = GPIO.input(ENCODER_CLK_PIN)
