@@ -58,7 +58,7 @@ font = ImageFont.load_default()
 # Start Up Animation
 for i in [0, 1, 2, 3]:
     mcp1.output(i, 1)
-    mcp1.output(i + 4, 1)
+    mcp1.output(7 - i, 1)
     sleep(0.1)
 
 def createSession():
@@ -82,6 +82,12 @@ def openMainMenu():
     menu.add(MenuItem("Create Session", createSession));
     menu.add(MenuItem("Load Session", loadSession));
     menu.add(MenuItem("Exit", exit));
+
+def shutdown():
+    for i in [0, 1, 2, 3, 4, 5, 6, 7]:
+        mcp1.output(i, 0)
+    GPIO.cleanup();
+    mcp1.cleanup();
 
 index = 0
 clkLastState = GPIO.input(ENCODER_CLK_PIN)
@@ -119,4 +125,4 @@ try:
             display.display()
             sleep(0.001)
 finally:
-    GPIO.cleanup();
+    shutdown()
