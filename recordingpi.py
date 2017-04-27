@@ -107,7 +107,7 @@ class RecordLed:
 
     def run(self, delta):
         self.timePassed += delta
-        if self.timePassed > 1
+        if self.timePassed > 1:
             self.active = self.active == 1 if 0 else 1
         GPIO.output(RECORD_LED_PIN, self.active)
 
