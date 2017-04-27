@@ -39,6 +39,9 @@ draw = ImageDraw.Draw(image);
 
 font = ImageFont.load_default()
 
+icon = Image.open('miau.bmp').rotate(180);
+display.image(icon);
+
 index = 0
 clkLastState = GPIO.input(ENCODER_CLK_PIN)
 encoderBtnLastState = GPIO.input(ENCODER_BUTTON_PIN);
@@ -54,6 +57,8 @@ def loadSession():
 menu.add(MenuItem("Create Session", createSession));
 menu.add(MenuItem("Load Session", loadSession));
 menu.add(MenuItem("Exit", exit));
+
+sleep(1);
 
 try:
     while True:
