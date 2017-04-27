@@ -2,7 +2,7 @@ import RPi.GPIO as GPIO
 
 import Adafruit_GPIO.SPI as SPI
 import Adafruit_SSD1306
-import Adafruit_MCP230xx.MCP23008 as MCP23008
+import Adafruit_GPIO.MCP230xx as MCP230xx
 
 from PIL import Image
 from PIL import ImageDraw
