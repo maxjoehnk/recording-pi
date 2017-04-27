@@ -26,14 +26,14 @@ GPIO.setup(ENCODER_DT_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP);
 
 # Setup MCP23008 #1
 mcp1 = MCP230xx.MCP23008(busnum=1, address=0x20)
-mcp1.config(0, GPIO.OUT)
-mcp1.config(1, GPIO.OUT)
-mcp1.config(2, GPIO.OUT)
-mcp1.config(3, GPIO.OUT)
-mcp1.config(4, GPIO.OUT)
-mcp1.config(5, GPIO.OUT)
-mcp1.config(6, GPIO.OUT)
-mcp1.config(7, GPIO.OUT)
+mcp1.setup(0, GPIO.OUT)
+mcp1.setup(1, GPIO.OUT)
+mcp1.setup(2, GPIO.OUT)
+mcp1.setup(3, GPIO.OUT)
+mcp1.setup(4, GPIO.OUT)
+mcp1.setup(5, GPIO.OUT)
+mcp1.setup(6, GPIO.OUT)
+mcp1.setup(7, GPIO.OUT)
 
 # Setup Display
 display = Adafruit_SSD1306.SSD1306_128_32(rst=DISPLAY_RST_PIN, dc=DISPLAY_DC_PIN, spi=SPI.SpiDev(DISPLAY_SPI_PORT, DISPLAY_SPI_DEVICE, max_speed_hz=8000000));
