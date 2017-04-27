@@ -8,7 +8,7 @@ from PIL import Image
 from PIL import ImageDraw
 from PIL import ImageFont
 
-from time import sleep
+from time import sleep, time
 
 from recordingpi.menu import *
 from recordingpi.consts import *
@@ -100,8 +100,21 @@ encoderBtnLastState = GPIO.input(ENCODER_BUTTON_PIN);
 menu = Menu("Main Menu", []);
 openMainMenu();
 
+timePassed = 0
+active = 1
+
+def blink_record_led(delta):
+    timePassed += delta
+    if timePassed > 50:
+        active = active == 1 ? 0 : 1
+    GPIO.output(RECORD_LED_PIN, active)
+
+lastTime = time()
+
 try:
     while True:
+            delta = time() - lastTime
+
             # Read Inputs
             clkState = GPIO.input(ENCODER_CLK_PIN)
             dtState = GPIO.input(ENCODER_DT_PIN)
@@ -127,6 +140,8 @@ try:
 
             display.image(image.rotate(180))
             display.display()
+            blink_record_led(delta)
+            lastTime = time()
             sleep(0.001)
 finally:
     shutdown()
