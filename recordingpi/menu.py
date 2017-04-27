@@ -4,13 +4,13 @@ from .consts import *
 
 font = ImageFont.load_default()
 
-class MenuItem:
+class MenuItem(object):
     def __init__(self, label, callback):
         self.label = label;
         self.callback = callback;
 
-class Menu:
-    def __init__(self, label, items=[]):
+class Menu(object):
+    def __init__(self, label, items):
         self.label = label;
         self.items = items;
         self.index = 0;

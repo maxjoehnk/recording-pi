@@ -52,7 +52,7 @@ menu = Menu("Main Menu")
 
 def createSession():
     session = Session();
-    menu = Menu("Session");
+    menu = Menu("Session", []);
     menu.add(MenuItem("Record", session.record))
     menu.add(MenuItem("Play", session.play))
     menu.add(MenuItem("Delete", session.delete))
