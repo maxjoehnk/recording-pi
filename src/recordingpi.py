@@ -48,25 +48,38 @@ height = 32;
 image = Image.new('1', (width, height));
 
 draw = ImageDraw.Draw(image);
-draw.rectangle((10, 10, width - 10, height - 10), outline=0, fill=1);
 
-display.image(image);
-display.display();
+font = ImageFont.load_default()
 
-counter = 0
+index = 0
 clkLastState = GPIO.input(ENCODER_CLK_PIN)
+
+menu = ["Create Session", "Load Session"]
 
 try:
     while True:
+            #Handle Encoder Rotation
             clkState = GPIO.input(ENCODER_CLK_PIN)
             dtState = GPIO.input(ENCODER_DT_PIN)
             if clkState != clkLastState:
                     if dtState != clkState:
-                            counter += 1
+                            index += 1
                     else:
-                            counter -= 1
-                    print counter
+                            index -= 1
+                    if index >= menu.length:
+                        index = 0
+                    else if index < 0:
+                        index = menu.length - 1
             clkLastState = clkState
+
+            # Update Display
+            # Background
+            draw.rectangle((0, 0, width, height), outline=0, fill=0);
+
+            draw.text((0, 0), menu[index]);
+
+            display.image(image)
+            display.display()
             sleep(0.001)
 finally:
         GPIO.cleanup()
