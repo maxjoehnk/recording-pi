@@ -37,12 +37,12 @@ class Menu:
     def next(self):
         self.index += 1;
         if (self.index >= len(self.items)):
-            index = 0; # Go back to first item
+            self.index = 0; # Go back to first item
 
     def prev(self):
         self.index -= 1;
         if (self.index < 0):
-            index = len(self.items) - 1; # Go Back to last item
+            self.index = len(self.items) - 1; # Go Back to last item
 
     def add(self, item):
         self.items.append(item);
