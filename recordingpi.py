@@ -41,7 +41,7 @@ font = ImageFont.load_default()
 
 index = 0
 clkLastState = GPIO.input(ENCODER_CLK_PIN)
-enoderBtnLastState = GPIO.input(ENCODER_BUTTON_PIN);
+encoderBtnLastState = GPIO.input(ENCODER_BUTTON_PIN);
 
 menu = Menu("Main Menu")
 
@@ -73,7 +73,8 @@ try:
             # Handle Encoder Push
             if encoderBtnState != encoderBtnLastState:
                 if GPIO.input(ENCODER_BUTTON_PIN) == 0:
-                    menu = menu.select();
+                    if menu is not None:
+                        menu = menu.select();
             encoderBtnLastState = encoderBtnState
 
             if menu is not None:
