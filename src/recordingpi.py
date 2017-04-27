@@ -68,7 +68,7 @@ try:
                             index -= 1
                     if index >= menu.length:
                         index = 0
-                    else if index < 0:
+                    elif index < 0:
                         index = menu.length - 1
             clkLastState = clkState
 
