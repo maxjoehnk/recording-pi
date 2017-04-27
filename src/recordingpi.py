@@ -50,8 +50,8 @@ image = Image.new('1', (width, height));
 draw = ImageDraw.Draw(image);
 draw.rectangle((10, 10, width - 10, height - 10), outline=0, fill=1);
 
-disp.image(image);
-disp.display();
+display.image(image);
+display.display();
 
 counter = 0
 clkLastState = GPIO.input(ENCODER_CLK_PIN)
