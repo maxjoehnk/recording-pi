@@ -24,6 +24,17 @@ GPIO.setup(ENCODER_BUTTON_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP);
 GPIO.setup(ENCODER_CLK_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP);
 GPIO.setup(ENCODER_DT_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP);
 
+# Setup MCP23008 #1
+mcp1 = MCP230xx.MCP23008(busnum=1, address=0x20)
+mcp1.config(0, GPIO.OUT)
+mcp1.config(1, GPIO.OUT)
+mcp1.config(2, GPIO.OUT)
+mcp1.config(3, GPIO.OUT)
+mcp1.config(4, GPIO.OUT)
+mcp1.config(5, GPIO.OUT)
+mcp1.config(6, GPIO.OUT)
+mcp1.config(7, GPIO.OUT)
+
 # Setup Display
 display = Adafruit_SSD1306.SSD1306_128_32(rst=DISPLAY_RST_PIN, dc=DISPLAY_DC_PIN, spi=SPI.SpiDev(DISPLAY_SPI_PORT, DISPLAY_SPI_DEVICE, max_speed_hz=8000000));
 
@@ -43,6 +54,12 @@ font = ImageFont.load_default()
 # icon = Image.open('miau.ppm').rotate(180).convert('1');
 # display.image(icon);
 # display.display();
+
+# Start Up Animation
+for i in [0, 1, 2, 3]:
+    mcp1.output(i, 1)
+    mcp1.output(i + 4, 1)
+    sleep(0.1)
 
 def createSession():
     session = Session();
