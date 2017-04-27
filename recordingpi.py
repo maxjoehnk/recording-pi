@@ -12,6 +12,7 @@ from time import sleep
 
 from recordingpi.menu import *
 from recordingpi.consts import *
+from recordingpi.session import *
 
 # Setup GPIO
 GPIO.setmode(GPIO.BCM);
