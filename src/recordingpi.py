@@ -1,4 +1,4 @@
-import Rpi.GPIO as GPIO
+import RPi.GPIO as GPIO
 
 import Adafruit_GPIO.SPI as SPI
 import Adafruit_SSD1306
