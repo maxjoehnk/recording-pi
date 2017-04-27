@@ -67,6 +67,6 @@ try:
                             counter -= 1
                     print counter
             clkLastState = clkState
-            sleep(0.01)
+            sleep(0.001)
 finally:
         GPIO.cleanup()
