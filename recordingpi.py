@@ -77,5 +77,4 @@ try:
             display.display()
             sleep(0.001)
 finally:
-        GPIO.cleanup();
-        display.reset();
+    GPIO.cleanup();
