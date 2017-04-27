@@ -5,16 +5,9 @@ from .consts import *
 font = ImageFont.load_default()
 
 class MenuItem:
-    def __init__(self, label, callback, menu=None):
+    def __init__(self, label, callback):
         self.label = label;
         self.callback = callback;
-        self.menu = menu;
-
-    def call(self):
-        self.callback();
-
-    def hasMenu():
-        return self.menu is not None;
 
 class Menu:
     def __init__(self, label, items=[]):
@@ -31,8 +24,10 @@ class Menu:
         draw.text((0, 16), self.items[self.index].label, font=font, fill=255);
 
     def select(self):
-        self.items[self.index].callback();
-        return self.items[self.index].menu;
+        value = self.items[self.index].callback();
+        if isinstance(value, Menu):
+            self = value
+        return value;
 
     def next(self):
         self.index += 1;

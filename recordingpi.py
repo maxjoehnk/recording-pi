@@ -51,7 +51,7 @@ encoderBtnLastState = GPIO.input(ENCODER_BUTTON_PIN);
 menu = Menu("Main Menu")
 
 def createSession():
-    menu = SessionMenu(Session());
+    return SessionMenu(Session());
 
 def loadSession():
     print "loading Sessions";
@@ -79,7 +79,7 @@ try:
             if encoderBtnState != encoderBtnLastState:
                 if GPIO.input(ENCODER_BUTTON_PIN) == 0:
                     if menu is not None:
-                        menu = menu.select();
+                        menu.select();
             encoderBtnLastState = encoderBtnState
 
             if menu is not None:
