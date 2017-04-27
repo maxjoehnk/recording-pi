@@ -10,14 +10,10 @@ from PIL import ImageFont
 
 from time import sleep
 
+from .menu import *
+from .consts import *
+
 # Setup GPIO
-RECORD_BUTTON_PIN = 5;
-RECORD_LED_PIN = 6;
-
-ENCODER_BUTTON_PIN = 17;
-ENCODER_CLK_PIN = 27;
-ENCODER_DT_PIN = 22;
-
 GPIO.setmode(GPIO.BCM);
 
 GPIO.setup(RECORD_BUTTON_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP);
@@ -28,11 +24,6 @@ GPIO.setup(ENCODER_CLK_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP);
 GPIO.setup(ENCODER_DT_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP);
 
 # Setup Display
-DISPLAY_RST_PIN = 24;
-DISPLAY_DC_PIN = 23;
-DISPLAY_SPI_PORT = 0;
-DISPLAY_SPI_DEVICE = 0;
-
 display = Adafruit_SSD1306.SSD1306_128_32(rst=DISPLAY_RST_PIN, dc=DISPLAY_DC_PIN, spi=SPI.SpiDev(DISPLAY_SPI_PORT, DISPLAY_SPI_DEVICE, max_speed_hz=8000000));
 
 # Initialize Display
@@ -42,10 +33,7 @@ display.begin();
 display.clear();
 display.display();
 
-width = 128;
-height = 32;
-
-image = Image.new('1', (width, height));
+image = Image.new('1', (DISPLAY_WIDTH, DISPLAY_HEIGHT));
 
 draw = ImageDraw.Draw(image);
 
@@ -54,7 +42,16 @@ font = ImageFont.load_default()
 index = 0
 clkLastState = GPIO.input(ENCODER_CLK_PIN)
 
-menu = ["Create Session", "Load Session"]
+menu = Menu("Main Menu")
+
+def createSession():
+    print "New Session";
+
+def loadSession():
+    print "loading Sessions";
+
+menu.add(MenuItem("Create Session", createSession));
+menu.add(MenuItem("Load Session", loadSession));
 
 try:
     while True:
@@ -62,23 +59,13 @@ try:
             clkState = GPIO.input(ENCODER_CLK_PIN)
             dtState = GPIO.input(ENCODER_DT_PIN)
             if clkState != clkLastState:
-                    if dtState != clkState:
-                            index += 1
-                    else:
-                            index -= 1
-                    if index >= len(menu):
-                        index = 0
-                    elif index < 0:
-                        index = len(menu) - 1
-                    print index
-                    print menu[index]
+                if dtState != clkState:
+                    menu.next();
+                else:
+                    menu.prev();
             clkLastState = clkState
 
-            # Update Display
-            # Background
-            draw.rectangle((0, 0, width, height), outline=0, fill=0);
-
-            draw.text((0, 0), menu[index], font=font, fill=255);
+            menu.render(draw);
 
             display.image(image.rotate(180))
             display.display()
