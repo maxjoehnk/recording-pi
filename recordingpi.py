@@ -39,9 +39,9 @@ draw = ImageDraw.Draw(image);
 
 font = ImageFont.load_default()
 
-icon = Image.open('miau.ppm').rotate(180).convert('1');
-display.image(icon);
-display.display();
+# icon = Image.open('miau.ppm').rotate(180).convert('1');
+# display.image(icon);
+# display.display();
 
 index = 0
 clkLastState = GPIO.input(ENCODER_CLK_PIN)
@@ -58,8 +58,6 @@ def loadSession():
 menu.add(MenuItem("Create Session", createSession));
 menu.add(MenuItem("Load Session", loadSession));
 menu.add(MenuItem("Exit", exit));
-
-sleep(1);
 
 try:
     while True:
