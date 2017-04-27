@@ -41,6 +41,7 @@ font = ImageFont.load_default()
 
 icon = Image.open('miau.ppm').rotate(180).convert('1');
 display.image(icon);
+display.display();
 
 index = 0
 clkLastState = GPIO.input(ENCODER_CLK_PIN)
