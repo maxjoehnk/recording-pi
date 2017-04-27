@@ -66,10 +66,12 @@ try:
                             index += 1
                     else:
                             index -= 1
-                    if index >= menu.length:
+                    if index >= len(menu):
                         index = 0
                     elif index < 0:
-                        index = menu.length - 1
+                        index = len(menu) - 1
+                    print index
+                    print menu[index]
             clkLastState = clkState
 
             # Update Display
