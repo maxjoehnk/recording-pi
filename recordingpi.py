@@ -57,7 +57,7 @@ font = ImageFont.load_default()
 
 # Start Up Animation
 for i in [0, 1, 2, 3]:
-    mcp1.output(4 - i, 1)
+    mcp1.output(3 - i, 1)
     mcp1.output(i + 4, 1)
     sleep(0.15)
 
