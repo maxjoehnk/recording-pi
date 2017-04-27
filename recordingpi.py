@@ -39,7 +39,7 @@ draw = ImageDraw.Draw(image);
 
 font = ImageFont.load_default()
 
-icon = Image.open('miau.ppm').rotate(180);
+icon = Image.open('miau.ppm').rotate(180).convert('1');
 display.image(icon);
 
 index = 0
