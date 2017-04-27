@@ -4,14 +4,14 @@ class Session:
     def __init__(self, date=datetime.now()):
         self.date = date;
 
-    def record():
+    def record(self):
         print "recording"
 
-    def play():
+    def play(self):
         print "playing"
 
-    def delete():
+    def delete(self):
         print "deleting"
 
-    def close():
+    def close(self):
         print "closing"
