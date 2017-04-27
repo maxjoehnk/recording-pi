@@ -46,3 +46,11 @@ class Menu:
 
     def add(self, item):
         self.items.append(item);
+
+class SessionMenu(Menu):
+    def __init__(self, session):
+        SessionMenu.__init__(self, "Session");
+        self.add(MenuItem("Record", session.record))
+        self.add(MenuItem("Play", session.play))
+        self.add(MenuItem("Delete", session.delete))
+        self.add(MenuItem("Close", session.close))

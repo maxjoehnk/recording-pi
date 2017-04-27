@@ -50,7 +50,7 @@ encoderBtnLastState = GPIO.input(ENCODER_BUTTON_PIN);
 menu = Menu("Main Menu")
 
 def createSession():
-    print "New Session";
+    menu = SessionMenu(Session());
 
 def loadSession():
     print "loading Sessions";
