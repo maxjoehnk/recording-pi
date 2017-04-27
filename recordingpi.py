@@ -103,7 +103,7 @@ openMainMenu();
 timePassed = 0
 active = 1
 
-def blink_record_led(delta):
+def blink_record_led(timePassed, active, delta):
     timePassed += delta
     if timePassed > 50:
         active = active == 1 if 0 else 1
@@ -140,7 +140,7 @@ try:
 
             display.image(image.rotate(180))
             display.display()
-            blink_record_led(delta)
+            blink_record_led(timePassed, active, delta)
             lastTime = time()
             sleep(0.001)
 finally:
