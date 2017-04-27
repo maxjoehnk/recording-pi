@@ -49,6 +49,7 @@ clkLastState = GPIO.input(ENCODER_CLK_PIN)
 encoderBtnLastState = GPIO.input(ENCODER_BUTTON_PIN);
 
 menu = Menu("Main Menu", []);
+openMainMenu();
 
 def createSession():
     session = Session();
@@ -57,14 +58,20 @@ def createSession():
     menu.add(MenuItem("Record", session.record))
     menu.add(MenuItem("Play", session.play))
     menu.add(MenuItem("Delete", session.delete))
-    menu.add(MenuItem("Close", session.close))
+    menu.add(MenuItem("Close", closeSession))
 
 def loadSession():
     print "loading Sessions";
 
-menu.add(MenuItem("Create Session", createSession));
-menu.add(MenuItem("Load Session", loadSession));
-menu.add(MenuItem("Exit", exit));
+def closeSession():
+    openMainMenu();
+
+def openMainMenu():
+    menu.clear();
+    menu.label = "Main Menu";
+    menu.add(MenuItem("Create Session", createSession));
+    menu.add(MenuItem("Load Session", loadSession));
+    menu.add(MenuItem("Exit", exit));
 
 try:
     while True:
