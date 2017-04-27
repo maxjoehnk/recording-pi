@@ -106,7 +106,7 @@ active = 1
 def blink_record_led(delta):
     timePassed += delta
     if timePassed > 50:
-        active = active == 1 ? 0 : 1
+        active = active == 1 if 0 else 1
     GPIO.output(RECORD_LED_PIN, active)
 
 lastTime = time()
