@@ -12,10 +12,18 @@ from PIL import ImageFont
 RECORD_BUTTON_PIN = 5;
 RECORD_LED_PIN = 6;
 
+ENCODER_BUTTON_PIN = 17;
+ENCODER_1_PIN = 27;
+ENCODER_2_PIN = 22;
+
 GPIO.setmode(GPIO.BCM);
 
 GPIO.setup(RECORD_BUTTON_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP);
 GPIO.setup(RECORD_LED_PIN, GPIO.OUT);
+
+GPIO.setup(ENCODER_BUTTON_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)M
+GPIO.setup(ENCODER_1_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP);
+GPIO.setup(ENCODER_2_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP);
 
 # Setup Display
 DISPLAY_RST_PIN = 24;
