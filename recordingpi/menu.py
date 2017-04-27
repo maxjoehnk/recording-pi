@@ -32,7 +32,7 @@ class Menu:
 
     def select(self):
         self.items[self.index].callback();
-        return self.items[self.index];
+        return self.items[self.index].menu;
 
     def next(self):
         self.index += 1;

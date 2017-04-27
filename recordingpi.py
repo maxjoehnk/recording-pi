@@ -56,7 +56,7 @@ menu.add(MenuItem("Exit", exit));
 
 try:
     while True:
-            #Handle Encoder Rotation
+            # Handle Encoder Rotation
             clkState = GPIO.input(ENCODER_CLK_PIN)
             dtState = GPIO.input(ENCODER_DT_PIN)
             if clkState != clkLastState:
@@ -66,7 +66,12 @@ try:
                     menu.prev();
             clkLastState = clkState
 
-            menu.render(draw);
+            # Handle Encoder Push
+            if GPIO.input(ENCODER_BUTTON_PIN) == 0:
+                menu = menu.select();
+
+            if menu is not None:
+                menu.render(draw);
 
             display.image(image.rotate(180))
             display.display()
