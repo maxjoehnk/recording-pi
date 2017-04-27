@@ -59,7 +59,12 @@ font = ImageFont.load_default()
 for i in [0, 1, 2, 3]:
     mcp1.output(i, 1)
     mcp1.output(7 - i, 1)
-    sleep(0.1)
+    sleep(0.2)
+
+sleep(1)
+
+for i in [0, 1, 2, 3, 4, 5, 6, 7]:
+    mcp1.output(i, 0);
 
 def createSession():
     session = Session();
