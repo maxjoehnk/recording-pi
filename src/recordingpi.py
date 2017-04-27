@@ -21,7 +21,7 @@ GPIO.setmode(GPIO.BCM);
 GPIO.setup(RECORD_BUTTON_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP);
 GPIO.setup(RECORD_LED_PIN, GPIO.OUT);
 
-GPIO.setup(ENCODER_BUTTON_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)M
+GPIO.setup(ENCODER_BUTTON_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP);
 GPIO.setup(ENCODER_1_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP);
 GPIO.setup(ENCODER_2_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP);
 
