@@ -10,8 +10,8 @@ from PIL import ImageFont
 
 from time import sleep
 
-from .menu import *
-from .consts import *
+from recordingpi.menu import *
+from recordingpi.consts import *
 
 # Setup GPIO
 GPIO.setmode(GPIO.BCM);
