@@ -78,7 +78,7 @@ try:
             # Background
             draw.rectangle((0, 0, width, height), outline=0, fill=0);
 
-            draw.text((0, 0), menu[index]);
+            draw.text((0, 0), menu[index], font=font, fill=255);
 
             display.image(image.rotate(180))
             display.display()
