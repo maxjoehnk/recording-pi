@@ -107,7 +107,7 @@ class RecordLed:
 
     def run(self, delta):
         self.timePassed += delta
-        if self.timePassed > 0.01:
+        if self.timePassed > 0.02:
             self.timePassed = 0
             if self.active == 1:
                 self.active = 0
