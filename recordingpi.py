@@ -52,6 +52,7 @@ def loadSession():
 
 menu.add(MenuItem("Create Session", createSession));
 menu.add(MenuItem("Load Session", loadSession));
+menu.add(MenuItem("Exit", exit));
 
 try:
     while True:
