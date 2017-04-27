@@ -8,13 +8,15 @@ from PIL import Image
 from PIL import ImageDraw
 from PIL import ImageFont
 
+from time import sleep
+
 # Setup GPIO
 RECORD_BUTTON_PIN = 5;
 RECORD_LED_PIN = 6;
 
 ENCODER_BUTTON_PIN = 17;
-ENCODER_1_PIN = 27;
-ENCODER_2_PIN = 22;
+ENCODER_CLK_PIN = 27;
+ENCODER_DT_PIN = 22;
 
 GPIO.setmode(GPIO.BCM);
 
@@ -22,8 +24,8 @@ GPIO.setup(RECORD_BUTTON_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP);
 GPIO.setup(RECORD_LED_PIN, GPIO.OUT);
 
 GPIO.setup(ENCODER_BUTTON_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP);
-GPIO.setup(ENCODER_1_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP);
-GPIO.setup(ENCODER_2_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP);
+GPIO.setup(ENCODER_CLK_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP);
+GPIO.setup(ENCODER_DT_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP);
 
 # Setup Display
 DISPLAY_RST_PIN = 24;
@@ -51,4 +53,20 @@ draw.rectangle((10, 10, width - 10, height - 10), outline=0, fill=1);
 disp.image(image);
 disp.display();
 
-GPIO.cleanup();
+counter = 0
+clkLastState = GPIO.input(ENCODER_CLK_PIN)
+
+try:
+    while True:
+            clkState = GPIO.input(ENCODER_CLK_PIN)
+            dtState = GPIO.input(ENCODER_DT_PIN)
+            if clkState != clkLastState:
+                    if dtState != clkState:
+                            counter += 1
+                    else:
+                            counter -= 1
+                    print counter
+            clkLastState = clkState
+            sleep(0.01)
+finally:
+        GPIO.cleanup()
