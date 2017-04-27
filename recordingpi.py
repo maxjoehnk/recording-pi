@@ -48,7 +48,7 @@ index = 0
 clkLastState = GPIO.input(ENCODER_CLK_PIN)
 encoderBtnLastState = GPIO.input(ENCODER_BUTTON_PIN);
 
-menu = Menu("Main Menu")
+menu = Menu("Main Menu", []);
 
 def createSession():
     session = Session();
