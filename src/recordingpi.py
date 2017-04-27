@@ -80,8 +80,9 @@ try:
 
             draw.text((0, 0), menu[index]);
 
-            display.image(image)
+            display.image(image.rotate(180))
             display.display()
             sleep(0.001)
 finally:
-        GPIO.cleanup()
+        GPIO.cleanup();
+        display.reset();
