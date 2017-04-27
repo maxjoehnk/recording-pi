@@ -21,7 +21,10 @@ class Menu:
         # Write Title
         draw.text((0, 0), self.label, font=font, fill=255);
         # Write Current Menu Item
-        draw.text((0, 16), self.items[self.index].label, font=font, fill=255);
+        if len(self.items) > 0:
+            draw.text((0, 16), self.items[self.index].label, font=font, fill=255);
+        else:
+            draw.text((0, 16), "No Items", font=font, fill=255);
 
     def select(self):
         value = self.items[self.index].callback();
