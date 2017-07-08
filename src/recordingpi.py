@@ -17,7 +17,7 @@ try:
     while True:
         input.capture()
         if state == STATE_SESSION_MENU:
-            session.render()
+            state = session.render()
         #elif state == STATE_MAIN_MENU:
         sleep(0.001)
 finally:

@@ -1,4 +1,5 @@
-from host import display
+from host import display, state
+import host.input
 
 STATE_MENU = 0
 SELECTED_ITEM_RECORD = 0
@@ -18,3 +19,22 @@ def render():
             drawMenu(title, 'Record')
         elif currentItem == SELECTED_ITEM_PLAY:
             drawMenu(title, 'Play')
+        elif currentItem == SELECTED_ITEM_EXPORT:
+            drawMenu(title, 'Export')
+        elif currentItem == SELECTED_ITEM_CHANNEL_SETUP:
+            drawMenu(title, 'Channel Setup')
+        elif currentItem == SELECTED_ITEM_DELETE:
+            drawMenu(title, 'Delete')
+        elif currentItem == SELECTED_ITEM_CLOSE:
+            drawMenu(title, 'Close')
+            if isEncoderBtnPressed():
+                return STATE_MAIN_MENU
+    dir = getEncoderDirection()
+    if dir == 1:
+        currentItem += 1
+        if currentItem > SELECTED_ITEM_CLOSE:
+            currentItem = SELECTED_ITEM_RECORD
+    elif dir == -1:
+        currentItem -= 1
+        if currentItem < SELECTED_ITEM_RECORD:
+            currentItem = SELECTED_ITEM_CLOSE
