@@ -8,7 +8,7 @@ const {
     DELETE_SESSION_SUCCESS
 } = require('../actions/session');
 const { START_RECORDING } = require('../actions/recording');
-const Session = require('../../session');
+const Session = require('../../models/session');
 
 const initialState = {
     pending: false

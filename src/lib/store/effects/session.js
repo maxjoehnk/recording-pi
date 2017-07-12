@@ -1,6 +1,6 @@
 const { call, put, takeEvery, select } = require('redux-saga/effects');
 const { OPEN_SESSION, openSessionSuccess, openSessionFailed, SAVE_SESSION, saveSessionSuccess, saveSessionFailed, DELETE_SESSION, deleteSessionSuccess, deleteSessionFailed } = require('../actions/session');
-const Session = require('../../session');
+const Session = require('../../models/session');
 const { getSession, getId } = require('../selectors/session');
 
 function* open(action) {

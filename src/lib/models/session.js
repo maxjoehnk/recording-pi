@@ -1,6 +1,6 @@
 const { readFile, writeFile, existsSync, mkdirSync, readdir } = require('fs');
 const rm = require('rimraf');
-const { sessionPath } = require('./config');
+const { sessionPath } = require('../config');
 
 const open = (id) => new Promise((resolve, reject) => {
     const path = `${sessionPath}/${id}`;
