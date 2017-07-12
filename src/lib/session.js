@@ -1,4 +1,4 @@
-const { readFile, writeFile, existsSync, mkdirSync } = require('fs');
+const { readFile, writeFile, existsSync, mkdirSync, readdir } = require('fs');
 const rm = require('rimraf');
 const { sessionPath } = require('./config');
 
@@ -48,9 +48,19 @@ const empty = () => ({
     recordings: []
 });
 
+const list = () => new Promise((resolve, reject) => {
+    readdir(sessionPath, (err, ids) => {
+        if (err) {
+            return reject(err);
+        }
+        return resolve(ids);
+    });
+});
+
 module.exports = {
     open,
     save,
     empty,
-    remove
+    remove,
+    list
 };
