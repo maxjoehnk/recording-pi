@@ -1,2 +1,4 @@
 const store = require('./store');
-const { openSession } = require('./store/actions/session');
+const { newSession } = require('./store/actions/session');
+
+store.dispatch(newSession());
