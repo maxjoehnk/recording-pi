@@ -1,3 +1,5 @@
+const uuid = require('uuid/v4');
+
 const OPEN_SESSION = '[Session] Open';
 const OPEN_SESSION_SUCCESS = '[Session] Open Success';
 const OPEN_SESSION_FAILED = '[Session] Open Failed';
@@ -11,9 +13,9 @@ const DELETE_SESSION = '[Session] Delete';
 const DELETE_SESSION_SUCCESS = '[Session] Delete Success';
 const DELETE_SESSION_FAILED = '[Session] Delete Failed';
 
-const openSession = file => ({
+const openSession = id => ({
     type: OPEN_SESSION,
-    payload: file
+    payload: id
 });
 
 const openSessionSuccess = session => ({
@@ -49,7 +51,8 @@ const closeSession = () => ({
 });
 
 const newSession = () => ({
-    type: NEW_SESSION
+    type: NEW_SESSION,
+    payload: uuid()
 });
 
 const deleteSession = () => ({

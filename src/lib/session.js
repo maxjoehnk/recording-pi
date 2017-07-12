@@ -1,7 +1,9 @@
 const { readFile, writeFile } = require('fs');
 const rm = require('rimraf');
+const { sessionPath } = require('./config');
 
-const open = (path) => new Promise((resolve, reject) => {
+const open = (id) => new Promise((resolve, reject) => {
+    const path = `${sessionPath}/${id}`;
     readFile(`${path}/session.json`, 'utf8', (err, data) => {
         if (err) {
             return reject(err);
@@ -14,7 +16,8 @@ const open = (path) => new Promise((resolve, reject) => {
     });
 });
 
-const save = (session, path) => new Promise((resolve, reject) => {
+const save = (session, id) => new Promise((resolve, reject) => {
+    const path = `${sessionPath}/${id}`;
     writeFile(`${path}/session.json`, JSON.stringify(session), (err) => {
         if (err) {
             return reject(err);
@@ -23,7 +26,8 @@ const save = (session, path) => new Promise((resolve, reject) => {
     });
 });
 
-const remove = (session, path) => new Promise((resolve, reject) => {
+const remove = (id) => new Promise((resolve, reject) => {
+    const path = `${sessionPath}/${id}`;
     rm(path, (err) => {
         if (err) {
             return reject(err);

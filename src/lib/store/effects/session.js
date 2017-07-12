@@ -1,7 +1,7 @@
 const { call, put, takeEvery, select } = require('redux-saga/effects');
 const { OPEN_SESSION, openSessionSuccess, openSessionFailed, SAVE_SESSION, saveSessionSuccess, saveSessionFailed, DELETE_SESSION, deleteSessionSuccess, deleteSessionFailed } = require('../actions/session');
 const Session = require('../../session');
-const { getSession, getPath } = require('../selectors/session');
+const { getSession, getId } = require('../selectors/session');
 
 function* open(action) {
     try {
@@ -15,8 +15,8 @@ function* open(action) {
 function* save(action) {
     try {
         const session = yield select(getSession);
-        const file = yield select(getPath);
-        yield Session.save(session, file);
+        const id = yield select(getId);
+        yield Session.save(session, id);
         yield put(saveSessionSuccess());
     }catch (error) {
         yield put(saveSessionFailed(error));
@@ -25,9 +25,8 @@ function* save(action) {
 
 function* remove(action) {
     try {
-        const session = yield select(getSession);
-        const path = yield select(getPath);
-        yield Session.remove(session, path);
+        const id = yield select(getId);
+        yield Session.remove(id);
         yield put(deleteSessionSuccess());
     }catch (error) {
         yield put(deleteSessionFailed(error));

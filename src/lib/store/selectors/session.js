@@ -1,7 +1,7 @@
 const getSession = state => state.session.current;
-const getPath = state => state.session.path;
+const getId = state => state.session.id;
 
 module.exports = {
     getSession,
-    getPath
+    getId
 };

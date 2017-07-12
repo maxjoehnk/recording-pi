@@ -38,7 +38,7 @@ const reducer = (state = initialState, action) => {
         case OPEN_SESSION:
             return {
                 pending: true,
-                path: action.payload
+                id: action.payload
             };
         case OPEN_SESSION_SUCCESS:
             return Object.assign({}, state, {
@@ -52,9 +52,13 @@ const reducer = (state = initialState, action) => {
             });
         case START_RECORDING:
         case RENAME_SESSION:
+            return Object.assign({}, state, {
+                current: reduceSession(state. current, action)
+            });
         case NEW_SESSION:
             return Object.assign({}, state, {
-                current: reduceSession(state.current, action)
+                current: reduceSession(state.current, action),
+                id: action.payload
             });
         case DELETE_SESSION_SUCCESS:
         case CLOSE_SESSION:
