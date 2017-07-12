@@ -10,9 +10,9 @@ draw = ImageDraw.Draw(image)
 
 font = ImageFont.load_default()
 
-def drawMenu(title, text):
+def drawMenu(title, text, disabled=False):
     draw.rectangle((0, 0, DISPLAY_WIDTH, DISPLAY_HEIGHT), outline=0, fill=0)
     draw.text((0, 0), title, font=font, fill=255)
-    draw.text((0, 16), text, font=font, fill=255)
+    draw.text((0, 16), text, font=font, fill=128 if disabled else 255)
     __DISPLAY.image(image)
     __DISPLAY.display()

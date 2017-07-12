@@ -13,18 +13,20 @@ state = STATE_MENU
 currentItem = SELECTED_ITEM_RECORD
 title = 'Default Session'
 
+hasFiles = False;
+
 def render():
     if state == STATE_MENU:
         if currentItem == SELECTED_ITEM_RECORD:
             drawMenu(title, 'Record')
         elif currentItem == SELECTED_ITEM_PLAY:
-            drawMenu(title, 'Play')
+            drawMenu(title, 'Play', not hasFiles)
         elif currentItem == SELECTED_ITEM_EXPORT:
-            drawMenu(title, 'Export')
+            drawMenu(title, 'Export', not hasFiles)
         elif currentItem == SELECTED_ITEM_CHANNEL_SETUP:
             drawMenu(title, 'Channel Setup')
         elif currentItem == SELECTED_ITEM_DELETE:
-            drawMenu(title, 'Delete')
+            drawMenu(title, 'Delete', not hasFiles)
         elif currentItem == SELECTED_ITEM_CLOSE:
             drawMenu(title, 'Close')
             if isEncoderBtnPressed():
