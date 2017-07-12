@@ -1,4 +1,5 @@
 const { readFile, writeFile } = require('fs');
+const rm = require('rimraf');
 
 const open = (path) => new Promise((resolve, reject) => {
     readFile(`${path}/session.json`, 'utf8', (err, data) => {
@@ -22,6 +23,15 @@ const save = (session, path) => new Promise((resolve, reject) => {
     });
 });
 
+const remove = (session, path) => new Promise((resolve, reject) => {
+    rm(path, (err) => {
+        if (err) {
+            return reject(err);
+        }
+        return resolve();
+    });
+});
+
 const empty = () => ({
     name: 'Empty Session',
     date: new Date(),
@@ -34,5 +44,6 @@ const empty = () => ({
 module.exports = {
     open,
     save,
-    empty
+    empty,
+    remove
 };

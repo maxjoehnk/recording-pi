@@ -7,6 +7,9 @@ const SAVE_SESSION_FAILED = '[Session] Save Failed';
 const RENAME_SESSION = '[Session] Rename';
 const CLOSE_SESSION = '[Session] Close';
 const NEW_SESSION = '[Session] New';
+const DELETE_SESSION = '[Session] Delete';
+const DELETE_SESSION_SUCCESS = '[Session] Delete Success';
+const DELETE_SESSION_FAILED = '[Session] Delete Failed';
 
 const openSession = file => ({
     type: OPEN_SESSION,
@@ -49,6 +52,19 @@ const newSession = () => ({
     type: NEW_SESSION
 });
 
+const deleteSession = () => ({
+    type: DELETE_SESSION
+});
+
+const deleteSessionSuccess = () => ({
+    type: DELETE_SESSION_SUCCESS
+});
+
+const deleteSessionFailed = error => ({
+    type: DELETE_SESSION_FAILED,
+    error
+});
+
 module.exports = {
     OPEN_SESSION,
     OPEN_SESSION_SUCCESS,
@@ -59,6 +75,9 @@ module.exports = {
     RENAME_SESSION,
     CLOSE_SESSION,
     NEW_SESSION,
+    DELETE_SESSION,
+    DELETE_SESSION_SUCCESS,
+    DELETE_SESSION_FAILED,
     openSession,
     openSessionSuccess,
     openSessionFailed,
@@ -67,5 +86,8 @@ module.exports = {
     saveSessionFailed,
     renameSession,
     closeSession,
-    newSession
+    newSession,
+    deleteSession,
+    deleteSessionSuccess,
+    deleteSessionFailed
 };

@@ -4,7 +4,8 @@ const {
     OPEN_SESSION_FAILED,
     RENAME_SESSION,
     CLOSE_SESSION,
-    NEW_SESSION
+    NEW_SESSION,
+    DELETE_SESSION_SUCCESS
 } = require('../actions/session');
 const { START_RECORDING } = require('../actions/recording');
 const Session = require('../../session');
@@ -42,7 +43,7 @@ const reducer = (state = initialState, action) => {
         case OPEN_SESSION_SUCCESS:
             return Object.assign({}, state, {
                 pending: false,
-                session: reduceSession(state.session, action)
+                current: reduceSession(state.current, action)
             });
         case OPEN_SESSION_FAILED:
             return Object.assign({}, state, {
@@ -53,8 +54,9 @@ const reducer = (state = initialState, action) => {
         case RENAME_SESSION:
         case NEW_SESSION:
             return Object.assign({}, state, {
-                session: reduceSession(state.session, action)
+                current: reduceSession(state.current, action)
             });
+        case DELETE_SESSION_SUCCESS:
         case CLOSE_SESSION:
             return {
                 pending: false
