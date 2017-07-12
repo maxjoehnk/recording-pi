@@ -1,4 +1,4 @@
-const { readFile, writeFile } = require('fs');
+const { readFile, writeFile, existsSync, mkdirSync } = require('fs');
 const rm = require('rimraf');
 const { sessionPath } = require('./config');
 
@@ -18,6 +18,9 @@ const open = (id) => new Promise((resolve, reject) => {
 
 const save = (session, id) => new Promise((resolve, reject) => {
     const path = `${sessionPath}/${id}`;
+    if (!existsSync(path)) {
+        mkdirSync(path);
+    }
     writeFile(`${path}/session.json`, JSON.stringify(session), (err) => {
         if (err) {
             return reject(err);
