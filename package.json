@@ -3,11 +3,16 @@
     "version": "0.1.0",
     "scripts": {
         "remotedev": "remotedev --hostname=localhost --port=8000",
-        "start": "node src/lib/index.js"
+        "start": "node src/lib/index.js",
+        "dev": "webpack-dev-server",
+        "python": "python src"
     },
     "dependencies": {
         "express": "^4.15.3",
         "node-fetch": "^1.7.1",
+        "react": "^15.6.1",
+        "react-dom": "^15.6.1",
+        "react-redux": "^5.0.5",
         "redux": "^3.7.1",
         "redux-saga": "^0.15.4",
         "remote-redux-devtools": "^0.5.12",
@@ -15,7 +20,14 @@
         "uuid": "^3.1.0"
     },
     "devDependencies": {
+        "babel-core": "^6.25.0",
+        "babel-loader": "^7.1.1",
+        "babel-preset-env": "^1.6.0",
+        "babel-preset-react": "^6.24.1",
+        "html-webpack-plugin": "^2.29.0",
         "remotedev-server": "^0.2.3",
-        "webpack": "^3.1.0"
+        "webpack": "^3.1.0",
+        "webpack-dev-server": "^2.5.1",
+        "webpack-notifier": "^1.5.0"
     }
 }
