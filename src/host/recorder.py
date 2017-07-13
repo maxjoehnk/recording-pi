@@ -1,13 +1,15 @@
+import sound
+
 recording = False
 
 def start(channels):
     recording = True
-    print 'Start'
-    print channels
+    sound.setup_recorder()
+    sound.attach_recorder()
 
 def stop():
     recording = False
-    print 'Stop'
+    sound.detach_recorder()
 
 def isRecording():
     return recording
