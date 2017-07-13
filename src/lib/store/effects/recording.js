@@ -1,12 +1,18 @@
 const { call, put, takeEvery, select } = require('redux-saga/effects');
-const { START_RECORDING, STOP_RECORDING } = require('../actions/recording');
 const fetch = require('node-fetch');
+const { START_RECORDING, STOP_RECORDING } = require('../actions/recording');
+const { getFiles } = require('../selectors/recording');
 const { pythonPort } = require('../../config');
 
 function* start(action) {
     try {
+        const files = yield select(getFiles);
         yield fetch(`http://localhost:${pythonPort}/recording/start`, {
-            method: 'POST'
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(files)
         });
     }catch (error) {
         console.error(error);
@@ -16,7 +22,10 @@ function* start(action) {
 function* stop(action) {
     try {
         yield fetch(`http://localhost:${pythonPort}/recording/stop`, {
-            method: 'POST'
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            }
         });
     }catch (error) {
         console.error(error);
