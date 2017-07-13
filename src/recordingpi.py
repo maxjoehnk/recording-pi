@@ -1,8 +1,6 @@
-import host.boot
-import host.input
 from host.api import api
 
-from host import state
+from host import state, boot
 
 import host.menus.session
 import host.menus.main

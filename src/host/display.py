@@ -3,6 +3,7 @@ from PIL import ImageDraw
 from PIL import ImageFont
 
 from .boot import __DISPLAY
+from .consts import *
 
 image = Image.new('1', (DISPLAY_WIDTH, DISPLAY_HEIGHT))
 
