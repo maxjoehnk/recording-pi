@@ -1,5 +1,6 @@
 import host.boot
 import host.input
+from host.api import api
 
 from host import state
 
@@ -11,6 +12,8 @@ from time import sleep
 boot.setupGPIO()
 boot.setupDisplay()
 boot.bootAnimation()
+
+api.setup()
 
 state = STATE_SESSION_MENU
 
