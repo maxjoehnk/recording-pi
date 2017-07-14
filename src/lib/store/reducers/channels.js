@@ -1,4 +1,4 @@
-const { CHANNEL_AUDIO_LEVEL } = require('../actions/channels');
+const { CHANNELS_AUDIO_LEVEL } = require('../actions/channels');
 const { OPEN_SESSION_SUCCESS } = require('../actions/session');
 
 const initialState = {
@@ -32,13 +32,15 @@ module.exports = (state = initialState, action) => {
     switch (action.type) {
         case OPEN_SESSION_SUCCESS:
             return state; // @TODO: read names
-        case CHANNEL_AUDIO_LEVEL:
-            return Object.assign({}, state, {
-                [action.payload.channel]: {
-                    name: state[action.payload.channel].name,
-                    level: action.payload.level
-                }
+        case CHANNELS_AUDIO_LEVEL:
+            const next = {};
+            action.payload.forEach(({ channel, level }) => {
+                next[channel] = {
+                    name: state[channel].name,
+                    level
+                };
             });
+            return Object.assign({}, state, next);
         default:
             return state;
     }

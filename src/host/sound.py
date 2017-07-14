@@ -65,12 +65,14 @@ def on_message(bus, message):
         struct = Gst.Message.get_structure(message)
         if struct.get_name() == 'level':
             array_val = struct.get_value('rms')
+            levels = []
             for idx, value in enumerate(array_val):
                 level = pow(10, value / 20)
-                ws.send(json.dumps({ # TODO: move to a callback or something
+                levels.append({
                     'level': level,
                     'channel': idx + 1
-                }))
+                })
+            ws.send(json.dumps(levels))
 
 def close():
     pipeline.set_state(Gst.State.NULL)

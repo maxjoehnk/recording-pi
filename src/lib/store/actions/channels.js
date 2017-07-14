@@ -1,11 +1,11 @@
-const CHANNEL_AUDIO_LEVEL = '[Channel] Audio Level';
+const CHANNELS_AUDIO_LEVEL = '[Channel] Audio Level';
 
 const audioLevel = level => ({
-    type: CHANNEL_AUDIO_LEVEL,
+    type: CHANNELS_AUDIO_LEVEL,
     payload: level
 });
 
 module.exports = {
-    CHANNEL_AUDIO_LEVEL,
+    CHANNELS_AUDIO_LEVEL,
     audioLevel
 };
