@@ -1,17 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-// import { Provider } from 'react-redux';
+import { Provider } from 'react-redux';
 import MainFrame from './components/main/MainFrame';
+import { MuiThemeProvider } from 'material-ui/styles';
 
-// import store from './store/index.js';
+import store from './store/index.js';
 
 ReactDOM.render(
-    <MainFrame/>,
+    <Provider store={store}>
+        <MuiThemeProvider>
+            <MainFrame/>
+        </MuiThemeProvider>
+    </Provider>,
     document.getElementById('app')
 );
-
-
-/*
-<Provider store={store}>
-</Provider>,
- */

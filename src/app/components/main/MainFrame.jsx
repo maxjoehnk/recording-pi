@@ -1,7 +1,8 @@
 import React from 'react';
+import RecordButton from '../RecordButton';
 
 const MainFrame = () => (
-    <span>Hello World</span>
+    <RecordButton/>
 );
 
 export default MainFrame;
