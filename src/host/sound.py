@@ -2,6 +2,12 @@ import gi
 gi.require_version('Gst', '1.0')
 from gi.repository import Gst, GObject, Gtk
 
+import websocket
+import json
+
+ws = websocket.WebSocket()
+ws.connect("ws://localhost:3000")  # TODO: move to another file
+
 GObject.threads_init()
 Gst.init(None)
 
@@ -56,12 +62,15 @@ def on_message(bus, message):
         err, debug = message.parse_error()
         print "Error: %s" % err, debug
     elif t == Gst.MessageType.ELEMENT:
-        print 'Gst.MessageType.Element'
         struct = Gst.Message.get_structure(message)
         if struct.get_name() == 'level':
             array_val = struct.get_value('rms')
-            for value in array_val:
-                print pow(10, value / 20)
+            for idx, value in enumerate(array_val):
+                level = pow(10, value / 20)
+                ws.send(json.dumps({ # TODO: move to a callback or something
+                    'level': level,
+                    'channel': idx + 1
+                }))
 
 def close():
     pipeline.set_state(Gst.State.NULL)
