@@ -5,8 +5,6 @@ const { Server } = require('ws');
 const { createServer } = require('http');
 const { dispatch } = require('../store');
 
-const recording = require('./recording');
-
 const app = express();
 const server = createServer(app);
 
@@ -16,10 +14,15 @@ const wss = new Server({
 
 wss.on('connection', (ws, req) => {
     ws.on('message', msg => {
+        try {
+            const payload = JSON.parse(msg);
+            dispatch(payload);
+        }catch (err) {
+            console.error(err);
+        }
     });
 });
 
 app.use(bodyParser.json());
-app.use('/recording', recording);
 
-server.listen(ports.clientApi);
+server.listen(ports.hostApi);

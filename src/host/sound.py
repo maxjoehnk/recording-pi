@@ -1,12 +1,7 @@
 import gi
 gi.require_version('Gst', '1.0')
 from gi.repository import Gst, GObject, Gtk
-
-import websocket
-import json
-
-ws = websocket.WebSocket()
-ws.connect("ws://localhost:3000")  # TODO: move to another file
+from .store import store, actions
 
 GObject.threads_init()
 Gst.init(None)
@@ -72,7 +67,7 @@ def on_message(bus, message):
                     'level': level,
                     'channel': idx + 1
                 })
-            ws.send(json.dumps(levels))
+            store.dispatch(actions.audioLevel(levels))
 
 def close():
     pipeline.set_state(Gst.State.NULL)

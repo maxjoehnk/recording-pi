@@ -16,6 +16,11 @@ module.exports = {
             '/api': {
                 target: 'http://localhost:3000',
                 pathRewrite: {'^/api' : ''}
+            },
+            '/socket': {
+                target: 'ws://localhost:3000',
+                ws: true,
+                pathRewrite: {'^/socket': ''}
             }
         }
     },
