@@ -17,6 +17,16 @@ const level = (channel, level) => {
     }
 };
 
+const blink = (port, interval = 500) => {
+    let value = 1;
+    let timeout = setInterval(() => {
+        api.digitalWrite(port, value);
+        value = value ? 0 : 1;
+    }, interval);
+    return () => clearInterval(timeout);
+};
+
 module.exports = Object.assign({}, api, {
-    level
+    level,
+    blink
 });

@@ -2,7 +2,10 @@ const { call, put, takeEvery, select } = require('redux-saga/effects');
 const fetch = require('node-fetch');
 const { START_RECORDING, STOP_RECORDING } = require('../actions/recording');
 const { getFiles } = require('../selectors/recording');
-const { ports } = require('../../config');
+const { ports, gpio } = require('../../config');
+const { blink } = require('../../hw');
+
+let stopBlinking;
 
 function* start(action) {
     try {
@@ -14,6 +17,7 @@ function* start(action) {
             },
             body: JSON.stringify(files)
         });
+        stopBlinking = blink(gpio.leds.recording);
     }catch (error) {
         console.error(error);
     }
@@ -27,6 +31,10 @@ function* stop(action) {
                 'Content-Type': 'application/json'
             }
         });
+        if (stopBlinking) {
+            stopBlinking();
+            stopBlinking = null;
+        }
     }catch (error) {
         console.error(error);
     }
