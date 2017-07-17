@@ -9,7 +9,6 @@ from time import sleep
 
 boot.setupGPIO()
 boot.setupDisplay()
-boot.bootAnimation()
 
 api.setup()
 
