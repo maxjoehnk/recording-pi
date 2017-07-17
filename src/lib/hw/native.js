@@ -1,10 +1,10 @@
-const { digitalWrite, wiringPiSetup, mcp23008, pinMode, INPUT, OUTPUT } = require('wiring-pi');
+const { digitalWrite, wiringPiSetup, mcp23008Setup, pinMode, INPUT, OUTPUT } = require('wiring-pi');
 const { gpio } = require('../config');
 
 const setup = () => {
     wiringPiSetup();
     gpio.mcps.forEach(mcp =>
-        mcp23008(mcp.offset, mcp.address));
+        mcp23008Setup(mcp.offset, mcp.address));
     pinMode(gpio.recordBtn, INPUT);
     pinMode(gpio.leds.recording, OUTPUT);
     gpio.leds.channels.forEach(channel => {
