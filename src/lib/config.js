@@ -61,11 +61,11 @@ module.exports = {
             },
             {
                 offset: 200,
-                address: 36
+                address: 38
             },
             {
                 offset: 300,
-                address: 38
+                address: 72
             }
         ]
     },
