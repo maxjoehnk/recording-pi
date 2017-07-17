@@ -54,18 +54,18 @@ module.exports = {
             recording: 1
         },
         recordBtn: 17,
-        mcps: [ // TODO: Add real mcp addresses
+        mcps: [
             {
                 offset: 100,
                 address: 32
             },
             {
                 offset: 200,
-                address: 64
+                address: 36
             },
             {
                 offset: 300,
-                address: 96
+                address: 38
             }
         ]
     },
