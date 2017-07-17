@@ -11,19 +11,46 @@ module.exports = {
         // Ports 4-5 are used for the Display
         // Ports 18-20 are used for the Encoder
         leds: {
-            channels: {
-                1: 100,
-                2: 104,
-                3: 200,
-                4: 204,
-                5: 300,
-                6: 304
-            },
-            links: {
-                12: 0,
-                34: 2,
-                56: 3
-            },
+            channels: [
+                {
+                    channel: 1,
+                    base: 100
+                },
+                {
+                    channel: 2,
+                    base: 104
+                },
+                {
+                    channel: 3,
+                    base: 200
+                },
+                {
+                    channel: 4,
+                    base: 204
+                },
+                {
+                    channel: 5,
+                    base: 300
+                },
+                {
+                    channel: 6,
+                    base: 304
+                }
+            ],
+            links: [
+                {
+                    channels: 12,
+                    port: 0
+                },
+                {
+                    channels: 34,
+                    port: 2
+                },
+                {
+                    channels: 56,
+                    port: 3
+                }
+            ],
             recording: 1
         },
         recordBtn: 17,
@@ -41,5 +68,11 @@ module.exports = {
                 address: 96
             }
         ]
-    }
+    },
+    threshold: [
+        0.1,
+        0.3,
+        0.6,
+        1
+    ]
 };
